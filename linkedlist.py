@@ -59,9 +59,53 @@ class linkedlist:
                 temp = temp.next
             return str1[:-2]
 
+    def clear(self):
+        self.head == None
+        self.n =0
+
+    def delete_head(self):
+        if self.head == None:
+            return "Empty Linked List"
+        self.head = self.head.next
+        self.n -= 1
+
+    def delete_tail(self):
+        if self.head == None:
+            return "Empty Linked List"
+        if self.head.next ==None:
+            self.delete_head()
+            return
+        temp = self.head
+        while (temp.next.next !=None):
+            temp = temp.next
+        temp.next = None
+        self.n -= 1
+
+    def delete_by_val(self,val1):
+        if self.head == None:
+            return "Empty Linked List"
+        if self.head.val==val1:
+            self.delete_head()
+            return
+        temp = self.head
+        while (temp.next!= None):
+            if temp.next.val==val1:
+                break
+            temp = temp.next
+        if temp.next == None:
+            return "No value Found"
+        else:
+            temp.next = temp.next.next
+
 l = linkedlist()
 l.insert_head(1)
 l.insert_tail(3)
 l.insert_head(0)
 l.insert_at_index(2,2)
+print(l)
+l.delete_by_val(2)
+print(l)
+l.delete_head()
+print(l)
+l.delete_tail()
 print(l)
